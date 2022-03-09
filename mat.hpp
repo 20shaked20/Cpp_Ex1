@@ -1,7 +1,7 @@
 #include <string>
 
 namespace ariel { 
-	std::string mat(int col, int row, char a, char b);
+	std::string mat(int rows, int cols, char a, char b);
 };
 
 

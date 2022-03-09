@@ -81,12 +81,33 @@ TEST_CASE("Good input") { // first,third = rows : second,fourth = rows
 													"~$$$$$~\n"
 													"~~~~~~~"));
 	//9
-	CHECK(nospaces(mat(10, 10, '@', '-')) == nospaces("@\n"));
-	CHECK(nospaces(mat(10, 10, '@', '-')) == nospaces("@\n"));
-	CHECK(nospaces(mat(10, 10, '@', '-')) == nospaces("@\n"));
-	CHECK(nospaces(mat(10, 10, '@', '-')) == nospaces("@\n"));
-	CHECK(nospaces(mat(10, 10, '@', '-')) == nospaces("@\n"));
-	CHECK(nospaces(mat(10, 10, '@', '-')) == nospaces("@\n"));
+	CHECK(nospaces(mat(5, 9, '@', '-')) == nospaces("@@@@@\n"
+													"@---@\n"
+													"@-@-@\n"
+													"@-@-@\n"
+													"@-@-@\n"
+													"@-@-@\n"
+													"@-@-@\n"
+													"@---@\n"
+													"@@@@@"));
+	//10
+	CHECK(nospaces(mat(3, 5, '$', '*')) == nospaces("$$$\n"
+													"$*$\n"
+													"$*$\n"
+													"$*$\n"
+													"$$$\n"));
+	//11
+	CHECK(nospaces(mat(5, 7, '$', '-')) == nospaces("$$$$$\n"
+													"$---$\n"
+													"$-$-$\n"
+													"$-$-$\n"
+													"$-$-$\n"
+													"$---$\n"
+													"$$$$$\n"));
+	//12
+	CHECK(nospaces(mat(1, 3, '$', '-')) == nospaces("-\n"
+													"-\n"
+													"-\n"));
 
 }
 
@@ -100,14 +121,14 @@ TEST_CASE("Bad input") {
 	//4
 	CHECK_THROWS(mat(5, 7, -1, '%')); // one integer instead of string
 	//5
-	CHECK_THROWS(mat(5, 7, -1, 7)); // integers instead of string
-	// CHECK_THROWS(mat(5.4, 7.5, '$', '%')); // double instead of int 
+	CHECK_THROWS(mat(5, 7, -1, 7)); // integers instead of string 
 	//6
 	CHECK_THROWS(mat('5','6',5,3)); // switching places with strings and ints
 	//7
 	CHECK_THROWS(mat(10, 5, '$', '%')); // your test
 	//8
 	CHECK_THROWS(mat(10, 10, '@', '-'));
+
    
 }
 
