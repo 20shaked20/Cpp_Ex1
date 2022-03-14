@@ -6,26 +6,20 @@
 
 void input_check(int cols, int rows, char a, char b)
 {
-    if((int)cols != cols || (int)rows != rows){
-        std::__throw_invalid_argument("Not Integers");
-    } 
-    if (rows < 0 || cols < 0)
-    {
-        std::__throw_out_of_range("Negative values");
-        exit(1);
-    }
+
     if (rows % 2 == 0 || cols % 2 == 0)
     {
         std::__throw_out_of_range("Mat size is always odd");
         exit(1);
     }
-    /*
-    / was (std::isprint(a) == 0 || std::isprint(b) == 0), but had to change.
-    / i changed it because of dumb test, says : mat (5,5,"$",-3) is reasonable.. are you joking?..
-    */
-    if ((std::isprint(a) == 0 || std::isprint(b) == 0)|| a == ' ' || b == ' ')
+    if (rows < 0 || cols < 0)
     {
-        std::__throw_invalid_argument("Bad symbols");
+        std::__throw_out_of_range("negative values");
+        exit(1);
+    }
+    if (std::isprint(a) == 0 || std::isprint(b) == 0 || a == ' ' || b == ' ')
+    {
+        std::__throw_invalid_argument("Bad symbol");
         exit(1);
     }
 }
@@ -50,7 +44,7 @@ std::string ariel::mat(int cols, int rows, char a, char b)
      * @param less - how much the reduce from the matrix to get the inner bound.
      * @param x - the iterator index.
      */
-    std::vector<std::vector<char>> ans(rows,std::vector<char>(cols));
+    char ans[rows][cols];
     int less = 1;
     int x = 0;
     while (x < rows && x < cols)
